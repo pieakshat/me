@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akshat</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      background: #fff;
+      color: #000;
+      padding: 80px 48px;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      gap: 0 64px;
+      align-items: start;
+    }
+
+    /* ── Site header ── */
+    .site-header {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 48px;
+    }
+
+    /* ── Name ── */
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    /* ── Top nav ── */
+    .site-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 28px;
+      transition: color 0.1s;
+    }
+
+    .site-nav a:hover {
+      color: #000;
+    }
+
+    .site-nav a.active {
+      color: #000;
+      border-bottom: 1px solid #000;
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 64px;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      margin-bottom: 20px;
+    }
+
+    p {
+      max-width: 520px;
+      margin-bottom: 12px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Writing list ── */
+    #writing ul {
+      padding-left: 1.2em;
+    }
+
+    /* ── Dot-leader list ── */
+    .ledger {
+      list-style: none;
+      width: 100%;
+    }
+
+    .ledger li {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: 4px;
+    }
+
+    .ledger .title {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .ledger .dots {
+      flex: 1;
+      overflow: hidden;
+      margin: 0 8px;
+      color: #bbb;
+      height: 1em;
+      position: relative;
+      top: 1px;
+    }
+
+    .ledger .dots::before {
+      content: '............................................................................................................................';
+      letter-spacing: 2px;
+      font-size: 11px;
+      color: #bbb;
+    }
+
+    .ledger .year {
+      white-space: nowrap;
+      flex-shrink: 0;
+      color: #999;
+      font-size: 13px;
+    }
+
+    .ledger a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .ledger a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Contact ── */
+    .contact {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 4px 0;
+    }
+
+    .contact .key {
+      color: #999;
+    }
+
+    .contact a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 80px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #999;
+    }
+
+    #visitor-count {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ── Stat highlight ── */
+    .stat {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    /* ── Work cards ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .work-card {
+      border: 1px solid #000;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      color: #000;
+      transition: background 0.1s, color 0.1s;
+    }
+
+    .work-card:hover {
+      background: #c0392b;
+      color: #fff;
+    }
+
+    .work-card:hover .card-year {
+      color: #f0a098;
+    }
+
+    .work-card:hover .card-desc {
+      color: #f5c5c0;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #555;
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .card-year {
+      font-size: 12px;
+      color: #999;
+    }
+
+    /* ── Sidebar ── */
+    .side-col {
+      border-left: 1px solid #e8e8e8;
+      padding-left: 28px;
+      position: sticky;
+      top: 80px;
+    }
+
+    .side-section {
+      margin-bottom: 44px;
+    }
+
+    .side-section h3 {
+      font-size: 10px;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #aaa;
+      margin-bottom: 12px;
+    }
+
+    .side-section h3::before {
+      content: '// ';
+      color: #ddd;
+    }
+
+    .side-list {
+      list-style: none;
+    }
+
+    .side-list li {
+      font-size: 12px;
+      line-height: 2;
+      color: #444;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .side-list li::before {
+      content: '→';
+      color: #ccc;
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    .side-list a {
+      color: #444;
+      text-decoration: none;
+    }
+
+    .side-list a:hover {
+      color: #000;
+      text-decoration: underline;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 760px) {
+      body {
+        padding: 40px 24px;
+      }
+
+      main {
+        grid-template-columns: 1fr;
+      }
+
+      main>h1 {
+        grid-column: 1;
+      }
+
+      .side-col {
+        border-left: none;
+        border-top: 1px solid #e8e8e8;
+        padding-left: 0;
+        padding-top: 32px;
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 32px;
+      }
+
+      h1 {
+        font-size: 22px;
+        margin-bottom: 32px;
+      }
+
+      nav {
+        margin-bottom: 48px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 0;
+      }
+
+      nav a {
+        margin-right: 20px;
+      }
+
+      section {
+        margin-bottom: 48px;
+      }
+
+      p {
+        max-width: 100%;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ledger .dots::before {
+        content: '..............................................................................................';
+      }
+
+      footer {
+        margin-top: 56px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .side-col {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <header class="site-header">
+      <h1>hi, I'm Akshat</h1>
+      <nav class="site-nav">
+        <a href="work.html">work</a>
+        <a href="writings.html">writings</a>
+      </nav>
+    </header>
+
+    <div class="main-col">
+
+      <section id="about">
+        <p>
+          I'm 20, a generalist building in financial infrastructure for internet-native capital markets.
+        </p>
+
+        <p>
+          Previously, I worked with Starknet, supporting <span class="stat">3+ early-stage teams in raising
+            $100K+</span>
+          through founder support. I
+          worked with founders across product design, matched the right talent to teams,
+          and helped refine market fit.
+        </p>
+
+        <p>
+          I also founded and led a media agency generating <span class="stat">five-figure revenue and over 500K
+            impressions</span>, helping web3
+          projects scale distribution and storytelling
+        </p>
+
+        <p>
+          I've won <span class="stat">5+ hackathons</span>, handled freelance projects and I actively experiment accross
+          DeFi
+        </p>
+      </section>
+
+      <section id="work">
+        <h2>Projects</h2>
+        <div class="work-grid">
+          <a href="https://github.com/pieakshat/Yield-MM" class="work-card" target="_blank" rel="noopener noreferrer">
+            <span class="card-title">Yield MM</span>
+            <span class="card-desc">Yield Strategy for OTC swaps using Uniswap-v4 and Aave</span>
+            <span class="card-year">2025</span>
+          </a>
+          <a href="https://github.com/pieakshat/pm-contracts-v2" class="work-card" target="_blank"
+            rel="noopener noreferrer">
+            <span class="card-title">PM Contracts</span>
+            <span class="card-desc">Infrastructure contracts for prediction markets using gnosis's CTF and a custom
+              AMM</span>
+            <span class="card-year">2025</span>
+          </a>
+          <a href="https://starknetaura.fun/" class="work-card" target="_blank" rel="noopener noreferrer">
+            <span class="card-title">Starknet Aura cards</span>
+            <span class="card-desc">A fun personalised cards game for the CT community with 3k+ users</span>
+            <span class="card-year">2025</span>
+          </a>
+        </div>
+      </section>
+
+      <section id="writing">
+        <h2>Some Thoughts & Learnings</h2>
+        <ul>
+          <li>If you want to build something, be a user first.</li>
+          <li>Always optimize for opportunity cost.</li>
+          <li>Psychology and economics drive everything.</li>
+          <li>Designing DeFi contracts is always an iterative process.</li>
+          <li>As more people understand money, the case for programmable finance becomes obvious.</li>
+        </ul>
+
+      </section>
+
+      <p style="margin-bottom: 20px;">Always open to building something cool: full-time, freelance, or otherwise.
+      </p>
+
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact">
+          <span class="key">email</span>
+          <a href="">akshat.05p@gmail.com</a>
+
+          <span class="key">github</span>
+          <a href="https://github.com/pieakshat" target="_blank" rel="noopener">@pieakshat</a>
+
+          <span class="key">X</span>
+          <a href="https://x.com/pieakshat" target="_blank" rel="noopener">@pieakshat</a>
+
+          <span class="key">Telegram</span>
+          <a href="https://t.me/pieakshat" target="_blank" rel="noopener">@pieakshat</a>
+
+          <span class="key">linkedin</span>
+          <a href="https://www.linkedin.com/in/akshat-patil-909bb828a/" target="_blank" rel="noopener">Akshat Patil</a>
+
+        </div>
+      </section>
+
+      <footer>
+        <span>© 2026</span>
+        <span>visits: <span id="visitor-count">—</span></span>
+      </footer>
+
+    </div>
+
+    <aside class="side-col">
+      <div class="side-section">
+        <h3>on my radar</h3>
+        <ul class="side-list">
+          <li>Polymarket Bots</li>
+          <li>on-chain insurance markets</li>
+          <li>Credit markets and undercollateralized markets</li>
+        </ul>
+      </div>
+
+      <div class="side-section">
+        <h3>Projects I like</h3>
+        <ul class="side-list">
+          <li><a href="https://www.cap.app/" target="_blank" rel="noopener">Cap Money</a></li>
+          <li><a href="https://www.blend.money/" target="_blank" rel="noopener">Blend Money</a></li>
+          <li><a href="https://axal.com/" target="_blank" rel="noopener">Axal</a></li>
+          <li><a href="https://www.pendle.finance/" target="_blank" rel="noopener">Pendle</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </main>
+
+  <script>
+    // ── Visitor Counter ──────────────────────────────────────────────────────
+    const SITE_KEY = 'yourname-homepage'; // ← change this
+
+    async function loadCounter() {
+      const el = document.getElementById('visitor-count');
+      try {
+        const res = await fetch(`https://api.countapi.xyz/hit/personal-site/${SITE_KEY}`);
+        if (!res.ok) throw new Error();
+        const { value } = await res.json();
+        el.textContent = value.toLocaleString();
+      } catch {
+        const n = parseInt(localStorage.getItem('vc') || '0') + 1;
+        localStorage.setItem('vc', n);
+        el.textContent = n.toLocaleString();
+      }
+    }
+
+    loadCounter();
+  </script>
+
+</body>
+
+</html>

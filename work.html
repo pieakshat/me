@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work — Akshat</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 14px;
+      line-height: 1.8;
+      background: #fff;
+      color: #000;
+      padding: 80px 48px;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ── Site header ── */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 64px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: -0.5px;
+      text-transform: uppercase;
+      margin-bottom: 0;
+    }
+
+    h1 a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    h1 a:hover {
+      text-decoration: underline;
+    }
+
+    /* ── Top nav ── */
+    .site-nav a {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 13px;
+      margin-left: 28px;
+      transition: color 0.1s;
+    }
+
+    .site-nav a:hover {
+      color: #000;
+    }
+
+    .site-nav a.active {
+      color: #000;
+      border-bottom: 1px solid #000;
+    }
+
+    /* ── Sections ── */
+    section {
+      margin-bottom: 64px;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      margin-bottom: 24px;
+    }
+
+    p {
+      margin-bottom: 12px;
+      max-width: 600px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ── Stat highlight ── */
+    .stat {
+      color: #c0392b;
+      font-weight: bold;
+    }
+
+    /* ── Work cards ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .work-card {
+      border: 1px solid #000;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-decoration: none;
+      color: #000;
+      transition: background 0.1s, color 0.1s;
+    }
+
+    .work-card:hover {
+      background: #c0392b;
+      color: #fff;
+    }
+
+    .work-card:hover .card-year {
+      color: #f0a098;
+    }
+
+    .work-card:hover .card-desc {
+      color: #f5c5c0;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #555;
+      flex: 1;
+      line-height: 1.6;
+    }
+
+    .card-year {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .work-card:hover .card-desc {
+      color: #f5c5c0;
+    }
+
+    /* ── Experience list ── */
+    .exp-list {
+      list-style: none;
+    }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 0 24px;
+      padding: 20px 0;
+      border-top: 1px solid #eee;
+    }
+
+    .exp-item:last-child {
+      border-bottom: 1px solid #eee;
+    }
+
+    .exp-meta {
+      padding-top: 2px;
+    }
+
+    .exp-org {
+      font-size: 12px;
+      color: #999;
+      display: block;
+    }
+
+    .exp-period {
+      font-size: 11px;
+      color: #bbb;
+      display: block;
+    }
+
+    .exp-role {
+      font-size: 13px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .exp-desc {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.7;
+    }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 80px;
+      font-size: 13px;
+      color: #999;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 600px) {
+      body {
+        padding: 40px 24px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exp-item {
+        grid-template-columns: 1fr;
+        gap: 6px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+
+    <header class="site-header">
+      <h1><a href="index.html">Work</a></h1>
+      <nav class="site-nav">
+        <a href="index.html">home</a>
+        <a href="work.html" class="active">work</a>
+        <a href="writings.html">writings</a>
+      </nav>
+    </header>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="work-grid">
+        <a href="https://github.com/pieakshat/Yield-MM" class="work-card" target="_blank" rel="noopener noreferrer">
+          <span class="card-title">Yield MM</span>
+          <span class="card-desc">Yield Strategy for OTC swaps using Uniswap-v4 and Aave</span>
+          <span class="card-year">2025</span>
+        </a>
+        <a href="https://github.com/pieakshat/pm-contracts-v2" class="work-card" target="_blank"
+          rel="noopener noreferrer">
+          <span class="card-title">PM Contracts</span>
+          <span class="card-desc">Infrastructure contracts for prediction markets using gnosis's CTF and a custom
+            AMM</span>
+          <span class="card-year">2025</span>
+        </a>
+        <a href="https://starknetaura.fun/" class="work-card" target="_blank" rel="noopener noreferrer">
+          <span class="card-title">Starknet Aura cards</span>
+          <span class="card-desc">A fun personalised cards game for the CT community with 3k+ users</span>
+          <span class="card-year">2025</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <ul class="exp-list">
+        <li class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-org">Starknet</span>
+            <span class="exp-period">2024 – 2025</span>
+          </div>
+          <div>
+            <span class="exp-role">Ecosystem & Founder Support</span>
+            <span class="exp-desc">Supported <span class="stat">3+ early-stage teams in raising $100K+</span>. Worked
+              across product design, talent matching, and market fit — from zero to first users.</span>
+          </div>
+        </li>
+        <li class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-org">Self</span>
+            <span class="exp-period">2023 – 2024</span>
+          </div>
+          <div>
+            <span class="exp-role">Media Agency Founder</span>
+            <span class="exp-desc">Founded and ran a web3 media agency generating <span class="stat">five-figure revenue
+                and 500K+ impressions</span>. Helped projects scale distribution and storytelling.</span>
+          </div>
+        </li>
+        <li class="exp-item">
+          <div class="exp-meta">
+            <span class="exp-org">Various</span>
+            <span class="exp-period">2023 – present</span>
+          </div>
+          <div>
+            <span class="exp-role">Hackathons & Freelance</span>
+            <span class="exp-desc">Won <span class="stat">5+ hackathons</span>. Taken on freelance contracts across DeFi
+              protocol design, smart contract work, and early-stage product.</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <footer>© 2026</footer>
+
+  </main>
+</body>
+
+</html>
