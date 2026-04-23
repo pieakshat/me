@@ -1,11 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Writings — Akshat</title>
   <style>
+    :root {
+      --bg: #fff;
+      --fg: #000;
+      --muted: #999;
+      --dim: #aaa;
+      --faint: #ddd;
+      --border: #e8e8e8;
+    }
+
+    [data-theme="dark"] {
+      --bg: #111;
+      --fg: #e8e8e8;
+      --muted: #666;
+      --dim: #555;
+      --faint: #333;
+      --border: #222;
+    }
+
     *,
     *::before,
     *::after {
@@ -16,11 +34,12 @@
 
     body {
       font-family: 'Courier New', Courier, monospace;
-      font-size: 14px;
+      font-size: 16px;
       line-height: 1.8;
-      background: #fff;
-      color: #000;
-      padding: 80px 48px;
+      background: var(--bg);
+      color: var(--fg);
+      padding: 56px 48px;
+      transition: background 0.2s, color 0.2s;
     }
 
     main {
@@ -45,7 +64,7 @@
     }
 
     h1 a {
-      color: #000;
+      color: var(--fg);
       text-decoration: none;
     }
 
@@ -55,20 +74,37 @@
 
     /* ── Top nav ── */
     .site-nav a {
-      color: #aaa;
+      color: var(--dim);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 14px;
       margin-left: 28px;
       transition: color 0.1s;
     }
 
     .site-nav a:hover {
-      color: #000;
+      color: var(--fg);
     }
 
     .site-nav a.active {
-      color: #000;
-      border-bottom: 1px solid #000;
+      color: var(--fg);
+      border-bottom: 1px solid var(--fg);
+    }
+
+    #theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      color: var(--dim);
+      margin-left: 28px;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.1s;
+    }
+
+    #theme-toggle:hover {
+      color: var(--fg);
     }
 
     /* ── Post list ── */
@@ -82,43 +118,57 @@
       justify-content: space-between;
       gap: 16px;
       padding: 14px 0;
-      border-top: 1px solid #eee;
+      border-top: 1px solid var(--border);
     }
 
     .post-item:last-child {
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid var(--border);
     }
 
-    .post-title {
-      font-size: 13px;
-      color: #000;
+    .post-link {
       text-decoration: none;
+      color: var(--fg);
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .post-title:hover {
+    .post-link:hover .post-title {
       text-decoration: underline;
     }
 
+    .post-title {
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .post-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
     .post-date {
-      font-size: 12px;
-      color: #bbb;
+      font-size: 13px;
+      color: var(--muted);
       white-space: nowrap;
       flex-shrink: 0;
+      align-self: flex-start;
     }
 
     /* ── Empty state ── */
     .empty {
       padding-top: 8px;
-      color: #bbb;
-      font-size: 13px;
+      color: var(--muted);
+      font-size: 15px;
     }
 
     /* ── Footer ── */
     footer {
       margin-top: 80px;
       font-size: 13px;
-      color: #999;
+      color: var(--muted);
     }
 
     /* ── Mobile ── */
@@ -143,23 +193,50 @@
         <a href="index.html">home</a>
         <a href="work.html">work</a>
         <a href="writings.html" class="active">writings</a>
+        <button id="theme-toggle" aria-label="Toggle dark mode">○</button>
       </nav>
     </header>
 
     <ul class="post-list">
-      <!-- add posts here as you write them:
       <li class="post-item">
-        <a class="post-title" href="#">Post title</a>
-        <span class="post-date">Feb 2026</span>
+        <a class="post-link" href="https://x.com/pieakshat/status/2042677069407228216?s=20" target="_blank" rel="noopener noreferrer">
+          <span class="post-title">Long Morpho Short Aave</span>
+          <span class="post-desc">A pair trade analysis between $Aave and $Morpho</span>
+        </a>
+        <span class="post-date">Apr 2026</span>
       </li>
-      -->
     </ul>
-
-    <p class="empty">nothing here yet. check back soon.</p>
 
     <footer>© 2026</footer>
 
   </main>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const root = document.documentElement;
+
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') {
+      root.removeAttribute('data-theme');
+      toggle.textContent = '○';
+    } else {
+      root.setAttribute('data-theme', 'dark');
+      toggle.textContent = '●';
+    }
+
+    toggle.addEventListener('click', () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      if (isDark) {
+        root.removeAttribute('data-theme');
+        toggle.textContent = '○';
+        localStorage.setItem('theme', 'light');
+      } else {
+        root.setAttribute('data-theme', 'dark');
+        toggle.textContent = '●';
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
 </body>
 
 </html>
